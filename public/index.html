@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snellville Lab Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🧪</span>
+      <div>
+        <strong>Snellville Lab Tracker</strong>
+        <small>1555 Janmar Rd · PSA &amp; IsoPSA · cobas</small>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <input type="date" id="globalDate" title="Working date" />
+      <span id="health" class="pill">…</span>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-view="dashboard" class="active">Dashboard</button>
+    <button data-view="accession">Accessioning</button>
+    <button data-view="runs">Runs</button>
+    <button data-view="qc">QC</button>
+    <button data-view="couriers">Couriers</button>
+    <button data-view="locations">Locations</button>
+    <button data-view="compliance">CLIA Checklist</button>
+  </nav>
+
+  <main id="main">
+    <!-- views are rendered here by app.js -->
+  </main>
+
+  <div id="phi-banner" class="phi-banner">
+    ⚠️ Do not enter patient names/MRNs unless this app is hosted on HIPAA-compliant
+    infrastructure. Use de-identified accession references. <a href="#" id="dismissPhi">dismiss</a>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
