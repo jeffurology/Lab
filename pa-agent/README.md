@@ -51,7 +51,25 @@ Before going live you still owe the paperwork this code can't do for you:
 - **TCPA/consent** for SMS is handled at the consent gate + STOP keyword, but review it
   against your state's rules.
 
-## Setup
+## Launch it (one step, no copy-paste)
+
+**macOS — double-click:** open the `pa-agent` folder in Finder and double-click
+**`Launch pa-agent.command`**. The first run installs everything and opens the app
+in your browser at http://localhost:3100; later runs just start it. (If macOS blocks
+it the first time: right-click → Open → Open.)
+
+**Any OS — one command:**
+
+```bash
+cd pa-agent
+npm run launch
+```
+
+Either way the launcher installs dependencies + the browser on first run, creates
+`.env` from the template (starting in safe `DRY_RUN` mode — nothing submits), starts
+the server, and opens your browser. Stop it with Ctrl-C.
+
+### Manual setup (if you prefer)
 
 ```bash
 cd pa-agent
