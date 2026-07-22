@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prior Auth Agent</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Prior Authorization Agent</h1>
+    <p class="sub">Provider-in-the-loop • ephemeral PHI • human-confirm before submit</p>
+    <div id="posture" class="posture"></div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1 · Intake</h2>
+      <div class="grid">
+        <fieldset>
+          <legend>Patient</legend>
+          <label>First name <input id="p_first" /></label>
+          <label>Last name <input id="p_last" /></label>
+          <label>DOB (MM/DD/YYYY) <input id="p_dob" placeholder="03/14/1958" /></label>
+          <label>Sex <input id="p_sex" placeholder="male / female" /></label>
+          <label>Mobile phone <input id="p_phone" placeholder="+14045551234" /></label>
+          <label>Insurance member ID <input id="p_member" /></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Medication</legend>
+          <label>Drug <input id="m_drug" placeholder="e.g. vibegron 75mg" /></label>
+          <label>Strength <input id="m_strength" /></label>
+          <label>Sig / directions <input id="m_sig" /></label>
+          <label>Indication <input id="m_indication" placeholder="overactive bladder" /></label>
+          <label>ICD-10 <input id="m_icd10" placeholder="N32.81" /></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Pharmacy</legend>
+          <label>Name & location <input id="ph_name" /></label>
+          <label>NCPDP (optional) <input id="ph_ncpdp" /></label>
+          <p class="hint">Missing? Consent, create the case, then "Text patient for missing info".</p>
+        </fieldset>
+
+        <fieldset class="wide">
+          <legend>Clinical (drives the medical-necessity narrative)</legend>
+          <label>Diagnosis <input id="c_diagnosis" /></label>
+          <div class="row3">
+            <label>Severity <input id="c_severity" /></label>
+            <label>Duration <input id="c_duration" /></label>
+            <label>Symptoms <input id="c_symptoms" /></label>
+          </div>
+          <label>Objective findings / labs <input id="c_labs" /></label>
+          <div id="stepTherapy">
+            <div class="steplabel">Step therapy tried <button type="button" id="addStep" class="mini">+ add</button></div>
+          </div>
+          <label>Why alternatives are unsuitable <input id="c_contra" /></label>
+          <label>Clinical rationale <textarea id="c_rationale" rows="2"></textarea></label>
+          <label>Guideline reference <input id="c_guideline" placeholder="AUA OAB guideline (2019, amended 2024)" /></label>
+        </fieldset>
+      </div>
+
+      <fieldset class="consent">
+        <legend>Consent (required)</legend>
+        <p id="consentText" class="consent-text"></p>
+        <label class="inline"><input type="checkbox" id="consentBox" /> Patient granted consent</label>
+        <label>Method
+          <select id="consentMethod">
+            <option value="verbal">verbal (documented by staff)</option>
+            <option value="web-form">patient web form</option>
+            <option value="sms-reply">SMS reply</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <button id="createBtn" class="primary">Create case</button>
+    </section>
+
+    <section class="card" id="workspace" hidden>
+      <h2>2 · Case <span id="caseId" class="mono"></span></h2>
+      <div id="status" class="status"></div>
+      <div id="missing" class="missing"></div>
+
+      <div class="actions">
+        <button id="textBtn">Text patient for missing info</button>
+        <button id="draftBtn">Draft medical-necessity justification</button>
+      </div>
+
+      <label class="wide">Medical-necessity justification (review &amp; edit before submit)
+        <textarea id="justification" rows="12" placeholder="Click 'Draft…' to generate, then edit."></textarea>
+      </label>
+      <button id="saveJustBtn">Save justification</button>
+
+      <div class="submit-row">
+        <button id="submitBtn" class="primary">Fill CoverMyMeds (stops before Submit)</button>
+        <button id="confirmBtn" class="danger" hidden>Confirm &amp; Submit to CoverMyMeds</button>
+        <button id="cancelBtn" hidden>Cancel portal session</button>
+        <button id="purgeBtn" class="ghost">Purge PHI now</button>
+      </div>
+
+      <div id="log" class="eventlog"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

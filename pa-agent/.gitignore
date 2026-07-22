@@ -1,0 +1,9 @@
+node_modules/
+.env
+# Screenshots of the portal can contain PHI — never commit them.
+screenshots/*.png
+# Playwright's stored auth/session state can contain credentials — never commit.
+.auth/
+storage-state.json
+npm-debug.log*
+.DS_Store
