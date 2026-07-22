@@ -1,0 +1,21 @@
+{
+  "name": "snellville-lab-tracker",
+  "version": "0.1.0",
+  "description": "Operations tracking for the Snellville (1555 Janmar Rd) PSA / IsoPSA laboratory: specimen accessioning, courier logistics, cobas run batches, QC, results turnaround, and CLIA launch checklist.",
+  "main": "server/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/seed.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "express": "^4.21.2"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

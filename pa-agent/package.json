@@ -1,0 +1,23 @@
+{
+  "name": "pa-agent",
+  "version": "0.1.0",
+  "description": "Provider-in-the-loop agent that drafts medical-necessity justifications and drives CoverMyMeds prior-authorization submissions. For a single practice, under the prescriber's own credentials. Ephemeral PHI, human-confirm before submit.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "launch": "bash launch.sh",
+    "calibrate": "node src/covermymeds/calibrate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "playwright": "^1.48.0",
+    "twilio": "^5.3.0"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
